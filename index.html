@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyCal - Adorable Desktop Pet</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: rgb(254, 252, 248);
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 60px;
+            /*background-image: url('assets/bg.svg');*/
+            background-repeat: repeat;
+        }
+
+        a.no-underline {
+            text-decoration: none;
+        }
+
+        /* 磨砂玻璃导航栏 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: rgba(255, 167, 102);
+        }
+
+        /* 介绍区域 */
+        .intro {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .intro h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: rgba(255, 167, 102);
+        }
+
+        .intro p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: rgba(255, 167, 102);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .app-store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .app-store-btn i {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        /* 卡片区域 */
+        .cards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            display: flex;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-content {
+            max-width: 400px;
+            flex: 1;
+            padding: 30px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: rgba(255, 167, 102);
+        }
+
+        .card p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .card-image {
+            flex: 0 0 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .card-image img {
+  
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+            }
+            
+            .card-image {
+                order: -1;
+                padding-bottom: 0;
+            }
+            
+            .intro h1 {
+                font-size: 28px;
+            }
+            
+            .intro p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href = "index.html" class="no-underline">
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="assets/appIcon.png">
+            </div>
+            <div class="logo-text">TinyCal</div>
+        </div>
+        </a>
+    </nav>
+
+    <!-- 介绍区域 -->
+    <section class="intro">
+        <h1>TinyCal - Menu Bar Calendar</h1>
+        <p>A tiny menu bar calendar for Mac. Check dates, events, and reminders with one click. Manage time efficiently without heavy apps—your schedule at a glance.</p>
+
+        <!-- App Store 按钮 -->
+        <a href="https://apps.apple.com/" class="app-store-btn">
+            <i></i>
+            Download for Mac
+        </a>
+    </section>
+
+    <!-- 卡片区域 -->
+    <div class="cards-container">
+        <!-- 卡片1 -->
+        <div class="card">
+            <div class="card-content">
+                <h2>• Menu Bar Ready</h2>
+                <p>Menu bar icon, click to reveal a clean calendar—no desktop clutter, instant access to your schedule.</p>
+                <br><br>
+                <h2>• System Sync</h2>
+                <p>Seamlessly connects with Calendar and Reminders, keeping meetings, to-dos, and deadlines in one view</p>
+            </div>
+            <div class="card-image">
+                <img src="assets/frame1.png" alt="Adorable Pet">
+            </div>
+        </div>
+
+        <!-- 卡片2 -->
+        <div class="card">
+            <div class="card-content">
+                <h2>• Customizable Style</h2>
+                <p>Personalize themes (light/dark/system), background colors, and date accents to match your desktop vibe</p>
+            </div>
+            <div class="card-image">
+                <img src="assets/frame2.png" alt="Effortless Interaction">
+            </div>
+        </div>
+
+        <!-- 卡片3 -->
+        <div class="card">
+            <div class="card-content">
+                <h2>Lightweight & Ad-Free</h2>
+                <p>Fast launch, low resource usage, and no ads—focus solely on managing your time</p>
+            </div>
+            <div class="card-image">
+                <img src="assets/frame3.png" alt="Edge-Snapping">
+            </div>
+        </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
+            <span>&copy; 2025 0xCC. All rights reserved.</span>
+            <span>|</span>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        </div>
+    </footer>
+</body>
+</html>
